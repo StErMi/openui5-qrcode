@@ -1,0 +1,26 @@
+{
+  "name": "openui5-qrcode",
+  "description": "An openui5 custom control to render a QR Code",
+  "main": "index.js",
+  "authors": [
+    "Emanuele Ricci <stermi@gmail.com>"
+  ],
+  "license": "Apache-2.0",
+  "keywords": [
+    "qrcode",
+    "openui5",
+    "sapui5",
+    "ui5",
+    "javascript"
+  ],
+  "moduleType": ["amd"],
+  "homepage": "https://github.com/StErMi/openui5-qrcode",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "demo",
+    "test",
+    "tests"
+  ]
+}
