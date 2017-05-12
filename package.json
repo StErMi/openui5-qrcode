@@ -1,16 +1,17 @@
 {
-  "name": "openui5-flatpickr",
+  "name": "openui5-qrcode",
   "version": "0.0.1",
-  "description": "An openui5 custom control to use flatpickr (https://github.com/chmln/flatpickr)",
+  "description": "An openui5 custom control to render a QR Code",
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/StErMi/openui5-flatpickr"
+    "url": "https://github.com/StErMi/openui5-qrcode"
   },
   "keywords": [
-    "datepicker",
+    "qrcode",
     "openui5",
     "sapui5",
+    "ui5",
     "javascript"
   ],
   "author": {
@@ -24,6 +25,7 @@
     "grunt-contrib-copy": "^1.0.0",
     "grunt-contrib-jshint": "^1.1.0",
     "grunt-contrib-uglify": "^2.2.0",
-    "grunt-openui5": "^0.11.0"
+    "grunt-openui5": "^0.11.0",
+    "qrcodejs": "^1.0.0"
   }
 }
