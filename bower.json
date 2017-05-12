@@ -13,7 +13,9 @@
     "ui5",
     "javascript"
   ],
-  "moduleType": ["amd"],
+  "moduleType": [
+    "amd"
+  ],
   "homepage": "https://github.com/StErMi/openui5-qrcode",
   "ignore": [
     "**/.*",
@@ -22,5 +24,11 @@
     "demo",
     "test",
     "tests"
-  ]
+  ],
+  "dependencies": {
+    "openui5-sap.ui.core": "openui5/packaged-sap.ui.core",
+    "openui5-sap.m": "openui5/packaged-sap.m",
+    "openui5-themelib_sap_belize": "openui5/packaged-themelib_sap_belize",
+    "openui5-sap.ui.layout": "openui5/packaged-sap.ui.layout"
+  }
 }
