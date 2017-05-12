@@ -4,6 +4,7 @@ module.exports = function(grunt) {
 
 		dir: {
 			src: 'src',
+			src_qrcode: 'node_modules/qrcodejs',
 			dest: 'dist',
 		},
 
@@ -16,15 +17,18 @@ module.exports = function(grunt) {
 		},
 
 		openui5_preload: {
-			library: {
-				options: {
-					resources: '<%= dir.src %>',
-					dest: '<%= dir.dest %>',
-					compatVersion: '1.44',
-					compress: false
-				},
-				libraries: 'it/designfuture/qrcode'
-			}
+		    library: {
+		        options: {
+		            resources: [
+		                { cwd: '<%= dir.src %>' },
+		                { cwd: '<%= dir.src_qrcode %>', src: 'qrcode.js', prefix: 'it/designfuture/qrcode/3rdparty' }
+		            ],
+		            dest: '<%= dir.dest %>',
+		            compatVersion: '1.44',
+		            compress: false
+		        },
+		        libraries: 'it/designfuture/qrcode'
+		    }
 		}
 	});
 

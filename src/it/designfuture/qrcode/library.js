@@ -34,7 +34,7 @@ sap.ui.define([
 			types: [],
 			interfaces: [],
 			controls: [ 
-				"it.designfuture.qrcode.FlatDatePicker"
+				"it.designfuture.qrcode.QRCode"
 			],
 			elements: []
 		});

@@ -32,13 +32,13 @@ Add the library to sap.ui5 dependencies list and configure the resourceRoots to 
 
 ### Add the custom control inside an XML View
 
-First of all add the namespace 
+First of all add the namespace to the View
 
 ```xml
 xmlns:df="it.designfuture.qrcode"
 ```
 
-And than you can simply add it a simple Input (FlatDatePicker extends InputBase)
+And than you can simply add the QRCode custom control
 
 ```xml
 <df:QRCode
