@@ -6,6 +6,7 @@ module.exports = function(grunt) {
 			src: 'src',
 			src_qrcode: 'node_modules/qrcodejs',
 			dest: 'dist',
+			demo: 'demo',
 			bower_components: 'bower_components'
 		},
 
@@ -16,6 +17,14 @@ module.exports = function(grunt) {
 		clean: {
 			dist: '<%= dir.dest %>/**'
 		},
+
+		eslint: {
+            options: {
+                configFile: './.eslintrc'
+            },
+
+            demo: ['<%= dir.demo %>']
+        },
 
 		connect: {
 			options: {
@@ -31,17 +40,18 @@ module.exports = function(grunt) {
 				resources: [
 					'<%= dir.bower_components %>/openui5-sap.ui.core/resources',
 					'<%= dir.bower_components %>/openui5-sap.m/resources',
+					'<%= dir.bower_components %>/openui5-sap.ui.layout/resources',
 					'<%= dir.bower_components %>/openui5-themelib_sap_belize/resources'
 				]
 			},
 			src: {
 				options: {
-					appresources: 'demo'
+					appresources: '<%= dir.demo %>'
 				}
 			},
 			dist: {
 				options: {
-					appresources: 'demo'
+					appresources: '<%= dir.demo %>'
 				}
 			}
 		},
@@ -68,6 +78,7 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-copy');
 	grunt.loadNpmTasks('grunt-openui5');
 	grunt.loadNpmTasks('grunt-eslint');
+    grunt.loadNpmTasks("grunt-contrib-watch");
 
 	// Server task
 	grunt.registerTask('serve', function(target) {
@@ -85,7 +96,7 @@ module.exports = function(grunt) {
 		'lint',
 		'clean',
 		'build',
-		'serve:dist'
+		'serve:demo'
 	]);
 
 };
