@@ -92,11 +92,6 @@ npm install
 grunt build
 ```
 
-You just need to take note of two things:
-
- 1. **compatVersion**: you should type here your project SAPUI5 version. Old projects (1.28.x) will generate a *library-preload.json*, new version will instead create a *library-prelaod.js*
- 2. **openui5_theme**: add addictional files for each theme you are supporting in your application
-
 ## Credits
 
 Emanuele Ricci
