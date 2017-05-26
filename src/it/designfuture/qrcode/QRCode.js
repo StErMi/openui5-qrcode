@@ -26,7 +26,7 @@ sap.ui.define([
 		__qrcode: undefined,
 		
 		metadata : {
-			library: 'it.designfuture.qrcode',
+			//library: 'it.designfuture.qrcode',
 			properties: {
 				
 				/**
@@ -47,12 +47,12 @@ sap.ui.define([
 				/**
 				 * HTML color (black/#ffffff) of the dark part of the QRCode
 				 */
-				colorDark : {type : "string", group : "Appearance", defaultValue : "#000000"},
+				colorDark : {type : "sap.ui.core.CSSColor", group : "Appearance", defaultValue : "#000000"},
 				
 				/**
 				 * HTML color (white/#ffffff) of the dark part of the QRCode
 				 */
-				colorLight : {type : "string", group : "Appearance", defaultValue : "#ffffff"},
+				colorLight : {type : "sap.ui.core.CSSColor", group : "Appearance", defaultValue : "#ffffff"},
 				
 				/**
 				 * Error correction level 0/1/2/3
@@ -60,15 +60,30 @@ sap.ui.define([
 				correctLevel : {type : "int", group : "Appearance", defaultValue : QRCode.CorrectLevel.H}
 			},
 			aggregations: {},
-			events: {},
+			events: {}
 		},
 		
 		init: function() {
 			//	Init all the things!
 		},
 		
+		onBeforeRendering: function() {
+			this.destroy();
+		},
+		
 		onAfterRendering: function() {
-			this.reDraw();
+			var iCorrectLevel = this.getCorrectLevel() < 0 || this.getCorrectLevel() > 3 ? QRCode.CorrectLevel.H : this.getCorrectLevel();
+			var oElement = this.getDomRef();
+			if( oElement ) {
+				this.__qrcode = new QRCode( this.getDomRef(), {
+					text: this.getText(),
+					width: this.getWidth(),
+					height: this.getHeight(),
+					colorDark: this.getColorDark(),
+					colorLight: this.getColorLight(),
+					correctLevel: iCorrectLevel
+				});	
+			}
 		},
 		
 		//////////////////////////////////////////////
@@ -76,124 +91,40 @@ sap.ui.define([
 		//////////////////////////////////////////////
 		
 		/*
-		* Return the text of the QR Code
-		* @public
-		* @returns {string} Text of the QR Code
-		*/
-		getText: function() {
-			return this.getProperty("text");
-		},
-		
-		/*
 		* Set a new text of the QR Code
 		* @public
 		* @param {string} sText - Text of the QR Code
 		* @param {boolean} bSkipDraw - skip the redraw
 		*/
-		setText: function(sText, bSkipDraw) {
-			this.setProperty("text", sText, true);
-			if( !bSkipDraw ) {
-				this.reDraw();
-			}
+		setText: function(sText) {
+			this.setProperty("text", sText, false);
 		},
-		
-		/*
-		* Return the width of the QR Code
-		* @public
-		* @returns {int} Width of the QR Code
-		*/
-		getWidth: function() {
-			return this.getProperty("width");
-		},
-		
 		
 		/*
 		* Set the width of the QR Code
 		* @public
 		* @param {int} iWidth - Width of the QR Code
-		* @param {boolean} bSkipDraw - skip the redraw
 		*/
-		setWidth: function(iWidth, bSkipDraw) {
-			if( isNaN(iWidth) ) {
-				throw new Error("Width must be an intreger");
-			}
-			iWidth = parseInt(iWidth, 10);
-			if( iWidth <= 0 ) {
-				throw new Error("Value " + iWidth + " is not a valid width");
-			}
-			
-			this.setProperty("width", parseInt(iWidth, 10), true);
-			if( !bSkipDraw ) {
-				this.reDraw();
-			}
-		},
-		
-		
-		/*
-		* Return the height of the QR Code
-		* @public
-		* @returns {int} Height of the QR Code
-		*/
-		getHeight: function() {
-			return this.getProperty("height");
+		setWidth: function(iWidth) {
+			this.setProperty("width", iWidth, false);
 		},
 		
 		/*
 		* Set the height of the QR Code
 		* @public
 		* @param {int} iHeight - Height of the QR Code
-		* @param {boolean} bSkipDraw - skip the redraw
 		*/
-		setHeight: function(iHeight, bSkipDraw) {
-			if( isNaN(iHeight) ) {
-				throw new Error("Height must be an intreger");
-			}
-			iHeight = parseInt(iHeight, 10);
-			if( iHeight <= 0 ) {
-				throw new Error("Value " + iHeight + " is not a valid height");
-			}
-			
-			
-			this.setProperty("height", parseInt(iHeight, 10), true);
-			if( !bSkipDraw ) {
-				this.reDraw();
-			}
-		},
-		
-		/*
-		* Return the RGB dark color of the QR Code
-		* @public
-		* @returns {string} RGB dark color of the QR Code
-		*/
-		getColorDark: function() {
-			return this.getProperty("colorDark");
+		setHeight: function(iHeight) {
+			this.setProperty("height", iHeight, false);
 		},
 		
 		/*
 		* Set the RGB dark color of the QR Code
 		* @public
 		* @param {string} sColorDark - RGB dark color of the QR Code
-		* @param {boolean} bSkipDraw - skip the redraw
 		*/
-		setColorDark: function(sColorDark, bSkipDraw) {
-			var isOk  = /(^#[0-9A-F]{6}$)|(^#[0-9A-F]{3}$)/i.test(sColorDark);
-			if( !isOk ) {
-				throw new Error("Value " + sColorDark + " is not a valid RGB format");
-			}
-			
-			this.setProperty("colorDark", sColorDark, true);
-			if( !bSkipDraw ) {
-				this.reDraw();
-			}
-		},
-		
-		/*
-		* Return the RGB light color of the QR Code
-		* @public
-		* @returns {string} RGB light color of the QR Code
-		*/
-		getColorLight: function() {
-			return this.getProperty("colorLight");
+		setColorDark: function(sColorDark) {
+			this.setProperty("colorDark", sColorDark, false);
 		},
 		
 		/*
@@ -202,34 +133,16 @@ sap.ui.define([
 		* @param {string} sColorLight - RGB light color of the QR Code
 		* @param {boolean} bSkipDraw - skip the redraw
 		*/
-		setColorLight: function(sColorLight, bSkipDraw) {
-			var isOk  = /(^#[0-9A-F]{6}$)|(^#[0-9A-F]{3}$)/i.test(sColorLight);
-			if( !isOk ) {
-				throw new Error("Value " + sColorLight + " is not a valid RGB format");
-			}
-			
-			this.setProperty("colorLight", sColorLight, true);
-			if( !bSkipDraw ) {
-				this.reDraw();
-			}
-		},
-		
-		/*
-		* Return the Error Correction Level of the QR Code
-		* @public
-		* @returns {int} Error Correction Level of the QR Code
-		*/
-		getCorrectLevel: function() {
-			return this.getProperty("correctLevel");
+		setColorLight: function(sColorLight) {
+			this.setProperty("colorLight", sColorLight, false);
 		},
 		
 		/*
 		* Set the Error Correction Level of the QR Code
 		* @public
 		* @param {int} iCorrectLevel - RGB light color of the QR Code
-		* @param {boolean} bSkipDraw - skip the redraw
 		*/
-		setCorrectLevel: function(iCorrectLevel, bSkipDraw) {
+		setCorrectLevel: function(iCorrectLevel) {
 			if( isNaN(iCorrectLevel) ) {
 				throw new Error("Value " + iCorrectLevel + " is not a valid integer for Error Correction Level");
 			}
@@ -239,47 +152,12 @@ sap.ui.define([
 				throw new Error("Value " + correctLevel + " is not a valid value for Error Correction Level (min 0, max 3)");
 			}
 			
-			this.setProperty("correctLevel", correctLevel, true);
-			if( !bSkipDraw ) {
-				this.reDraw();
-			}
+			this.setProperty("correctLevel", correctLevel, false);
 		},
 		
 		//////////////////////////////////////////////
 		// QRCODE METHODS
 		//////////////////////////////////////////////
-		
-		/*
-		* Draw the QRCode
-		* If the QR Code does not exist it creates a new one, if it already exist it just refresh it
-		*/
-		reDraw: function() {
-			var iCorrectLevel = this.getCorrectLevel() < 0 || this.getCorrectLevel() > 3 ? QRCode.CorrectLevel.H : this.getCorrectLevel();
-			if( this.__qrcode ) {
-				this.__qrcode._htOption.width = this.getWidth();
-				this.__qrcode._htOption.height = this.getHeight();
-				this.__qrcode._htOption.colorDark = this.getColorDark();
-				this.__qrcode._htOption.colorLight = this.getColorLight();
-				this.__qrcode._htOption.correctLevel = iCorrectLevel;
-				if( this.getText() ) {
-					this.__qrcode.makeCode( this.getText() );
-				} else {
-					this.__qrcode.clear();
-				}
-			} else {
-				var oElement = this.getDomRef();
-				if( oElement ) {
-					this.__qrcode = new QRCode( this.getDomRef(), {
-						text: this.getText(),
-						width: this.getWidth(),
-						height: this.getHeight(),
-						colorDark: this.getColorDark(),
-						colorLight: this.getColorLight(),
-						correctLevel: iCorrectLevel
-					});	
-				}
-			}
-		},
 		
 		/*
 		* Clear the QR Code
@@ -288,6 +166,14 @@ sap.ui.define([
 			if( this.__qrcode ) {
 				this.__qrcode.clear();
 			}
+		},
+		
+		/*
+		* Destroy the QR Code
+		*/
+		destroy: function() {
+			this.clear();
+			this.__qrcode = undefined;
 		}
 		
 	});
@@ -297,9 +183,8 @@ sap.ui.define([
 	* Override the exit method to free local resources and destroy 
 	* @public
 	*/	
-	QRCode.prototype.exit = function() {
-		this.__qrcode.clear();
-		this.__qrcode = undefined;
+	QRCodeControl.prototype.exit = function() {
+		this.destroy();
 	};
 	
 	return QRCodeControl;

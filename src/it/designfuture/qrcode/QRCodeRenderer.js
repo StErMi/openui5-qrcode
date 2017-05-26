@@ -8,7 +8,7 @@ sap.ui.define(['jquery.sap.global'],
 	* @static
 	* @namespace
 	*/
-	var QRCode = {};
+	var QRCodeRenderer = {};
 	
 	/**
 	 * Renders the HTML for the given control, using the provided {@link sap.ui.core.RenderManager}.
@@ -16,16 +16,16 @@ sap.ui.define(['jquery.sap.global'],
 	 * @param {sap.ui.core.RenderManager} oRm The RenderManager that can be used for writing to the render output buffer.
 	 * @param {sap.ui.core.Control} oControl An object representation of the control that should be rendered.
 	 */
-	QRCode.render = function(oRM, oControl) {
+	QRCodeRenderer.render = function(oRM, oControl) {
 		oRM.write("<div");
 		oRM.writeControlData(oControl);
-		oRM.addClass("opeui5-qrcode");
+		oRM.addClass("openui5-qrcode");
 		oRM.writeClasses();
 		oRM.write(">");
 		oRM.write("</div>");
 	};
 
 
-	return QRCode;
+	return QRCodeRenderer;
 
 }, /* bExport= */ true);

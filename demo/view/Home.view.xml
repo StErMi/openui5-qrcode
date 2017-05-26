@@ -26,10 +26,20 @@
 							<Input value="{temp>/text}" />
 							
 							<Label text="{i18n>qrcodeWidth}" />
-							<Input value="{temp>/width}" />
+							<Input type="Number"
+								value="{
+									path: 'temp>/width',
+									type: 'sap.ui.model.type.Integer'
+								}" 
+							/>
 							
 							<Label text="{i18n>qrcodeHeight}" />
-							<Input value="{temp>/height}" />
+							<Input type="Number" 
+								value="{
+									path: 'temp>/height',
+									type: 'sap.ui.model.type.Integer'
+								}"
+							/>
 							
 							<Label text="{i18n>qrcodeColorLight}" />
 							<Input value="{temp>/colorLight}" />
