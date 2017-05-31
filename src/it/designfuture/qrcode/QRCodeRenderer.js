@@ -22,6 +22,7 @@ sap.ui.define(['jquery.sap.global'],
 		oRM.addClass("openui5-qrcode");
 		oRM.writeClasses();
 		oRM.write(">");
+		oRM.renderControl(oControl.getAggregation("__qrcodeHTML"));
 		oRM.write("</div>");
 	};
 

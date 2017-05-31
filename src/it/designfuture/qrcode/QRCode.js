@@ -1,8 +1,9 @@
 // Provides control it.designfuture.qrcode.QRCode
 sap.ui.define([
 	"sap/ui/core/Control",
+	"sap/ui/core/HTML",
 	"./3rdparty/qrcode"
-], function (Control, qrcode) {
+], function (Control, HTML, qrcode) {
 	"use strict";
 	
 	/**
@@ -59,23 +60,34 @@ sap.ui.define([
 				 */
 				correctLevel : {type : "int", group : "Appearance", defaultValue : QRCode.CorrectLevel.H}
 			},
-			aggregations: {},
+			aggregations: {
+				__qrcodeHTML : {type : "sap.ui.core.HTML", multiple: false, visibility : "hidden"}
+			},
 			events: {}
 		},
 		
 		init: function() {
-			//	Init all the things!
-		},
-		
-		onBeforeRendering: function() {
-			this.destroy();
+			this.setAggregation("__qrcodeHTML", new HTML({
+				content: "<div class='openui5-qrcode' id='" + this.getId() + "-qrcode'></div>"
+			}));
 		},
 		
 		onAfterRendering: function() {
 			var iCorrectLevel = this.getCorrectLevel() < 0 || this.getCorrectLevel() > 3 ? QRCode.CorrectLevel.H : this.getCorrectLevel();
-			var oElement = this.getDomRef();
-			if( oElement ) {
-				this.__qrcode = new QRCode( this.getDomRef(), {
+			if( this.__qrcode ) {
+				this.__qrcode._htOption.width = this.getWidth();
+				this.__qrcode._htOption.height = this.getHeight();
+				this.__qrcode._htOption.colorDark = this.getColorDark();
+				this.__qrcode._htOption.colorLight = this.getColorLight();
+				this.__qrcode._htOption.correctLevel = iCorrectLevel;
+				if( this.getText() ) {
+					this.__qrcode.makeCode( this.getText() );
+				} else {
+					this.__qrcode.clear();
+				}
+			} else {
+				this.destroyQRCode();
+				this.__qrcode = new QRCode( jQuery.sap.domById( this.getId() + "-qrcode" ), {
 					text: this.getText(),
 					width: this.getWidth(),
 					height: this.getHeight(),
@@ -162,7 +174,7 @@ sap.ui.define([
 		/*
 		* Clear the QR Code
 		*/
-		clear: function() {
+		clearQRCode: function() {
 			if( this.__qrcode ) {
 				this.__qrcode.clear();
 			}
@@ -171,8 +183,8 @@ sap.ui.define([
 		/*
 		* Destroy the QR Code
 		*/
-		destroy: function() {
-			this.clear();
+		destroyQRCode: function() {
+			this.clearQRCode();
 			this.__qrcode = undefined;
 		}
 		
@@ -184,7 +196,7 @@ sap.ui.define([
 	* @public
 	*/	
 	QRCodeControl.prototype.exit = function() {
-		this.destroy();
+		this.destroyQRCode();
 	};
 	
 	return QRCodeControl;
