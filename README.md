@@ -6,7 +6,7 @@ openui5-qrcode is a SAPUI5 Custom Control that allow you to generate and easily 
 
 ## Demo
 
-You can checkout a demo with different configuration parameter here: https://stermi.github.io/openui5-qrcode/demo/
+You can checkout a demo with different configuration parameter here: https://stermi.github.io/openui5-qrcode/test/demo/
 
 ## Usage
 
