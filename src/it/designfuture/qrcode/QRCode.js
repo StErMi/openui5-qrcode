@@ -110,6 +110,7 @@ sap.ui.define([
 		*/
 		setText: function(sText) {
 			this.setProperty("text", sText, false);
+			return this;
 		},
 		
 		/*
@@ -119,6 +120,7 @@ sap.ui.define([
 		*/
 		setWidth: function(iWidth) {
 			this.setProperty("width", iWidth, false);
+			return this;
 		},
 		
 		/*
@@ -128,6 +130,7 @@ sap.ui.define([
 		*/
 		setHeight: function(iHeight) {
 			this.setProperty("height", iHeight, false);
+			return this;
 		},
 		
 		/*
@@ -137,6 +140,7 @@ sap.ui.define([
 		*/
 		setColorDark: function(sColorDark) {
 			this.setProperty("colorDark", sColorDark, false);
+			return this;
 		},
 		
 		/*
@@ -147,6 +151,7 @@ sap.ui.define([
 		*/
 		setColorLight: function(sColorLight) {
 			this.setProperty("colorLight", sColorLight, false);
+			return this;
 		},
 		
 		/*
@@ -165,6 +170,7 @@ sap.ui.define([
 			}
 			
 			this.setProperty("correctLevel", correctLevel, false);
+			return this;
 		},
 		
 		//////////////////////////////////////////////
@@ -178,6 +184,7 @@ sap.ui.define([
 			if( this.__qrcode ) {
 				this.__qrcode.clear();
 			}
+			return this;
 		},
 		
 		/*
@@ -186,6 +193,7 @@ sap.ui.define([
 		destroyQRCode: function() {
 			this.clearQRCode();
 			this.__qrcode = undefined;
+			return this;
 		}
 		
 	});

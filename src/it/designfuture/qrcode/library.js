@@ -21,14 +21,11 @@ sap.ui.define([
 		 * @version ${version}
 		 * @public
 		 */
-
-
-		// Include custom css
-		sap.ui.getCore().includeLibraryTheme("it.designfuture.qrcode");
 		
 		// delegate further initialization of this library to the Core
 		sap.ui.getCore().initLibrary({
 			name : "it.designfuture.qrcode",
+			noLibraryCSS: false,
 			version: "${version}",
 			dependencies : ["sap.ui.core", "sap.m"],
 			types: [],
