@@ -1,6 +1,6 @@
 {
   "name": "openui5-qrcode",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "An openui5 custom control to render a QR Code",
   "main": "index.js",
   "repository": {
