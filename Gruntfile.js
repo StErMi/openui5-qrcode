@@ -6,12 +6,31 @@ module.exports = function(grunt) {
 			src: 'src',
 			src_qrcode: 'node_modules/qrcodejs',
 			dest: 'dist',
-			demo: 'demo',
+			demo: 'test/demo',
 			bower_components: 'bower_components'
 		},
 
-		copy: {
+		watch: {
+			options: {
+				livereload: true
+			},
+			css: {
+				files: ['<%= dir.src %>/**/*.less', '<%= dir.src %>/**/*.css'],
+				tasks: ['build']
+			},
+			js: {
+				files: ['<%= dir.src %>/**/*.js'],
+				tasks: ['build']
+			}
+		},
 
+		copy: {
+			main: {
+				expand: true,
+				cwd: '<%= dir.dest %>/',
+				src: ['**'],
+				dest: '<%= dir.demo %>/thirdparty/',
+			},
 		},
 
 		clean: {
@@ -82,21 +101,22 @@ module.exports = function(grunt) {
 
 	// Server task
 	grunt.registerTask('serve', function(target) {
-		grunt.task.run('openui5_connect:' + (target || 'src') + ':keepalive');
+		grunt.task.run('openui5_connect:' + (target || 'src') );
+		grunt.task.run('watch');
 	});
 
 	// Linting task
 	grunt.registerTask('lint', ['eslint']);
 
 	// Build task
-	grunt.registerTask('build', ['openui5_preload']);
+	grunt.registerTask('build', ['clean', 'openui5_preload', 'copy']);
 
 	// Default task
 	grunt.registerTask('default', [
 		'lint',
 		'clean',
 		'build',
-		'serve:demo'
+		'serve'
 	]);
 
 };
