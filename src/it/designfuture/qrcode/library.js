@@ -25,7 +25,7 @@ sap.ui.define([
 		// delegate further initialization of this library to the Core
 		sap.ui.getCore().initLibrary({
 			name : "it.designfuture.qrcode",
-			noLibraryCSS: false,
+			noLibraryCSS: true,
 			version: "${version}",
 			dependencies : ["sap.ui.core", "sap.m"],
 			types: [],
