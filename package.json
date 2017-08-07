@@ -26,6 +26,7 @@
   },
   "devDependencies": {
     "bower": "^1.8.0",
+    "connect-livereload": "^0.6.0",
     "grunt": "^1.0.1",
     "grunt-contrib-clean": "^1.0.0",
     "grunt-contrib-connect": "^1.0.2",
@@ -34,7 +35,7 @@
     "grunt-contrib-uglify": "^2.2.0",
     "grunt-contrib-watch": "^1.0.0",
     "grunt-eslint": "^19.0.0",
-    "grunt-openui5": "^0.11.0",
+    "grunt-openui5": "^0.12.0",
     "qrcodejs": "^1.0.0"
   }
 }
