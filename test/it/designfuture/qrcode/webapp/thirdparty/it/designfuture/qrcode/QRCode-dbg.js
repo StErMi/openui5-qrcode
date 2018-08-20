@@ -2,7 +2,7 @@
 sap.ui.define([
 	"sap/ui/core/Control",
 	"sap/ui/core/HTML",
-	"./thirdparty/qrcode.min"
+	"./thirdparty/js/qrcode.min"
 ], function (Control, HTML, qrcode) {
 	"use strict";
 	
@@ -27,7 +27,7 @@ sap.ui.define([
 		__qrcode: undefined,
 		
 		metadata : {
-			//library: 'it.designfuture.qrcode',
+			library: 'it.designfuture.qrcode',
 			properties: {
 				
 				/**

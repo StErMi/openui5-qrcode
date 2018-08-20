@@ -27,7 +27,7 @@ sap.ui.define([
 		__qrcode: undefined,
 		
 		metadata : {
-			//library: 'it.designfuture.qrcode',
+			library: 'it.designfuture.qrcode',
 			properties: {
 				
 				/**
