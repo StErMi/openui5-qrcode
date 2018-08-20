@@ -2,7 +2,7 @@
 sap.ui.define([
 	"sap/ui/core/Control",
 	"sap/ui/core/HTML",
-	"./thirdparty/js/qrcode.min"
+	"./thirdparty/qrcode.min"
 ], function (Control, HTML, qrcode) {
 	"use strict";
 	
@@ -15,7 +15,7 @@ sap.ui.define([
 	 * @class
 	 * QRCode Control to render a QR Code
 	 * @extends sap.ui.code.Control
-	 * @version ${version}
+	 * @version 0.0.10
 	 *
 	 * @constructor
 	 * @public

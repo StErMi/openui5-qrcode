@@ -15,7 +15,7 @@ sap.ui.define([],  function() {
 		 * @namespace
 		 * @name it.designfuture.qrcode
 		 * @author Emanuele Ricci <stermi@gmail.com>
-		 * @version ${version}
+		 * @version 0.0.10
 		 * @public
 		 */
 		
@@ -23,7 +23,7 @@ sap.ui.define([],  function() {
 		sap.ui.getCore().initLibrary({
 			name : "it.designfuture.qrcode",
 			noLibraryCSS: true,
-			version: "${version}",
+			version: "0.0.10",
 			dependencies : ["sap.ui.core"],
 			types: [],
 			interfaces: [],
