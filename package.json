@@ -19,7 +19,7 @@
   },
   "license": "Apache-2.0",
   "scripts": {
-    "start": "ui5 serve",
+    "start": "ui5 serve -o /test-resources/it/designfuture/qrcode/webapp/index.html",
     "build": "ui5 build"
   },
   "devDependencies": {},
