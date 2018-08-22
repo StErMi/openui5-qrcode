@@ -15,7 +15,7 @@ sap.ui.define([
 	 * @class
 	 * QRCode Control to render a QR Code
 	 * @extends sap.ui.code.Control
-	 * @version 0.0.10
+	 * @version 1.0.0
 	 *
 	 * @constructor
 	 * @public
