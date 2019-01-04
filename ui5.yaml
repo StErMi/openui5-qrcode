@@ -2,3 +2,20 @@ specVersion: '0.1'
 metadata:
   name: openui5-qrcode
 type: library
+---
+specVersion: "0.1"
+kind: extension
+type: project-shim
+metadata:
+  name: it.designfuture.qrcode.thirdparty
+shims:
+  configurations:
+    qrcodejs:
+      specVersion: "0.1"
+      type: module
+      metadata:
+        name: qrcodejs
+      resources:
+        configuration:
+          paths:
+            /resources/it/designfuture/qrcode/thirdparty/: ""

@@ -2,3 +2,7 @@ node_modules
 bower_components
 .DS_Store
 .idea
+
+# only for testing, these resources should not be checked in
+test/ui5lab/browser/
+dist/test-resources/ui5lab/browser/

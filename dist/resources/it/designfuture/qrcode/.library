@@ -4,7 +4,7 @@
   <name>it.designfuture.qrcode</name>
   <vendor>OpenUI5 QRCode</vendor>
   <copyright>${copyright}</copyright>
-  <version>${version}</version>
+  <version>1.0.2</version>
   
   <documentation>Custom Control to render a QRCode</documentation>
   

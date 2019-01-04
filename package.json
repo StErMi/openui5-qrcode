@@ -1,6 +1,13 @@
 {
   "name": "openui5-qrcode",
   "version": "1.0.2",
+  "private": false,
+  "scripts": {
+    "test": "echo \"Error: no test specified. Please add some.\" && exit 1",
+    "prepare": "node prepare",
+    "start": "ui5 serve -o",
+    "build": "ui5 build"
+  },
   "description": "An openui5 custom control to render a QR Code",
   "repository": {
     "type": "git",
@@ -18,15 +25,21 @@
     "email": "stermi@gmail.com"
   },
   "license": "Apache-2.0",
-  "scripts": {
-    "start": "ui5 serve -o /test-resources/it/designfuture/qrcode/webapp/index.html",
-    "build": "ui5 build"
+  "devDependencies": {
+    "@ui5/cli": "^0.2.9",
+    "fs-extra": "^3.0.0",
+    "ui5lab-browser": "^1.0.0"
   },
-  "devDependencies": {},
   "dependencies": {
-    "@openui5/sap.m": "^1.58.0",
-    "@openui5/sap.ui.core": "^1.58.0",
-    "@openui5/sap.ui.layout": "^1.58.0",
-    "@openui5/themelib_sap_belize": "^1.58.0"
+    "@openui5/sap.m": "^1.60.2",
+    "@openui5/sap.ui.core": "^1.60.2",
+    "@openui5/sap.ui.layout": "^1.60.2",
+    "@openui5/themelib_sap_belize": "^1.60.2",
+    "qrcodejs": "^1.0.0"
+  },
+  "ui5lab": {
+    "namespace": "it.designfuture.qrcode",
+    "icon": "bar-code",
+    "displayName": "QRCode"
   }
 }
