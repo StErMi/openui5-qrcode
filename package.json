@@ -1,6 +1,6 @@
 {
   "name": "openui5-qrcode",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "private": false,
   "scripts": {
     "test": "echo \"Error: no test specified. Please add some.\" && exit 1",
